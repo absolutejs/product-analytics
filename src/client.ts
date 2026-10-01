@@ -60,7 +60,7 @@ export const startProductAnalytics = (
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         ...snapshot,
-        consent: true,
+        consent: true, version: 1,
         delivery: { ...delivery },
       }),
     })

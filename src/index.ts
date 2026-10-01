@@ -140,3 +140,7 @@ export const retentionCell = (
 
 export { accountHealth, nextSummaryAt, trackingSignals } from './reporting';
 export type { AccountHealthEvidence, ReportCadence, TrackingSignalInput } from './reporting';
+
+export { defineTrackingCatalog, validateTrackingEvent, trackingCoverage } from './catalog';
+export type { TrackingDefinition, TrackingField, TrackingViolation } from './catalog';
+export { experimentVariant, conversionInterval, experimentEvidence } from './experiments';

@@ -1,6 +1,6 @@
 {
   "name": "@absolutejs/product-analytics",
-  "version": "0.4.0",
+  "version": "0.6.0",
   "description": "Consent-aware first-party product engagement collection and session contracts.",
   "type": "module",
   "license": "BSL-1.1",

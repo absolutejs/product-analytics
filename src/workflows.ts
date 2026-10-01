@@ -50,7 +50,7 @@ export const startWorkflowTracking = (options: WorkflowTrackingOptions) => {
           credentials: "same-origin",
           keepalive: true,
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ ...event, consent: true }),
+          body: JSON.stringify({ ...event, consent: true, version: 1 }),
         })
         .catch(() => undefined);
     };
