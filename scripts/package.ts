@@ -1,0 +1,10 @@
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
+if (!/^\d+\.\d+\.\d+$/.test(pkg.version)) throw new Error('Expected a stable release version');
+await mkdir('artifacts', { recursive: true });
+const packed = Bun.spawnSync(['npm', 'pack', '--ignore-scripts', '--pack-destination', 'artifacts'], { stdout: 'inherit', stderr: 'inherit' });
+if (packed.exitCode !== 0) throw new Error('Package archive failed');
+const name = `absolutejs-product-analytics-${pkg.version}.tgz`;
+const bytes = await readFile(`artifacts/${name}`);
+await writeFile('artifacts/SHA256SUMS', `${createHash('sha256').update(bytes).digest('hex')}  ${name}\n`);

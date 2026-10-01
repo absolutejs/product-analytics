@@ -1,0 +1,49 @@
+name: Package CI and release
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck && bun test && bun run build
+      - run: bunx playwright install --with-deps chromium
+      - run: bun run test:browser
+      - run: bun run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: product-analytics-package
+          path: artifacts/*
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: verify
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: product-analytics-package
+          path: artifacts
+      - name: Verify version and publish immutable assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VERSION=$(node -p 'require("./package.json").version')
+          test "$GITHUB_REF_NAME" = "v$VERSION"
+          cd artifacts
+          sha256sum --check SHA256SUMS
+          cd ..
+          gh release create "$GITHUB_REF_NAME" artifacts/* --verify-tag --title "Product analytics $VERSION" --notes-file RELEASE.md
