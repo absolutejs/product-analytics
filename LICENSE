@@ -2,9 +2,9 @@
 
 **Licensor:** Alex Kahn
 
-**Licensed Work:** @absolutejs/analytics (https://github.com/absolutejs/analytics)
+**Licensed Work:** @absolutejs/product-analytics (https://github.com/absolutejs/product-analytics)
 
-**Change Date:** May 31, 2030
+**Change Date:** October 2, 2030
 
 **Change License:** Apache License, Version 2.0
 
@@ -37,7 +37,7 @@ any of the following:
 
 3. **Removal of Attribution.** Any derivative work, fork, or redistribution of
    the Licensed Work must prominently credit AbsoluteJS and include a link to
-   the original project repository (https://github.com/absolutejs/analytics).
+   the original project repository (https://github.com/absolutejs/product-analytics).
 
 For clarity, the following uses are expressly permitted:
 
@@ -45,7 +45,7 @@ For clarity, the following uses are expressly permitted:
   internal tools, or SaaS products (whether commercial or non-commercial), so
   long as the Licensed Work itself is not the primary product you are selling.
 - Using the Licensed Work as a dependency in commercial software you build and
-  sell, as long as the software is not itself a competing managed observability
+  sell, as long as the software is not itself a competing managed
   product-analytics platform of the kind described in clause 1.
 - Providing consulting, development, or professional services to clients using
   the Licensed Work.
