@@ -1,5 +1,3 @@
-Release 0.6.1 adds independent package CI and a verified archive distribution workflow. Runtime APIs are unchanged from 0.6.0.
+Release 0.6.2 is the first npm release of `@absolutejs/product-analytics`. Runtime APIs are unchanged from 0.6.1.
 
-Every release runs the build, typecheck, unit contracts, and real Chromium collector contracts. The archive and SHA256SUMS are attached only after these checks pass. No registry credentials are required.
-
-This repository is private. Download assets with an authorized GitHub account; do not embed tokens in package manifests or lockfiles. Dealroom vendors the verified release archive for self-contained deployments.
+The license now names this package and its repository, with a change date of October 2, 2030. Releases follow the changelog contract: `CHANGELOG.md` and `changelog.json` record every change, and `prepublishOnly` runs the typecheck, tests, build and changelog check before anything is published.
